@@ -15,7 +15,6 @@
  */
 
 #import "FBRequest.h"
-#import "JSON.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global
@@ -188,7 +187,7 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
   NSString* responseString = [[[NSString alloc] initWithData:data
                                                     encoding:NSUTF8StringEncoding]
                               autorelease];
-  SBJSON *jsonParser = [[SBJSON new] autorelease];
+
   if ([responseString isEqualToString:@"true"]) {
     return [NSDictionary dictionaryWithObject:@"true" forKey:@"result"];
   } else if ([responseString isEqualToString:@"false"]) {
@@ -201,8 +200,8 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
     return nil;
   }
 
-
-  id result = [jsonParser objectWithString:responseString];
+    NSData *responseData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+    id result = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:error];
 
   if (![result isKindOfClass:[NSArray class]]) {
     if ([result objectForKey:@"error"] != nil) {
@@ -260,7 +259,9 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
   }
     
   NSError* error = nil;
-  id result = [self parseJsonResponse:data error:&error];
+    
+
+    id result = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
   self.error = error;  
 
   if ([_delegate respondsToSelector:@selector(request:didLoad:)] ||
