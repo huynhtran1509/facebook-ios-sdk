@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'Facebook-iOS-SDK'
-  s.version  = '1.2.1'
+  s.version  = '1.2.2'
   s.platform = :ios
   s.license  = 'Apache License, Version 2.0'
   s.summary  = 'The iOS SDK provides Facebook Platform support for iOS apps. ' \
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.homepage = 'http://developers.facebook.com/docs/reference/iossdk'
   s.author   = 'Facebook'
 
-  s.source   = { :git => 'https://github.com/willowtreeapps/facebook-ios-sdk.git', :tag => 'v1.2.1' }
+  s.source   = { :git => 'https://github.com/willowtreeapps/facebook-ios-sdk.git', :tag => 'v1.2.2' }
 
   s.source_files = 'src/*.{h,m}'
   s.resource     = 'src/FBDialog.bundle'
