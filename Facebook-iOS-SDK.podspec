@@ -12,5 +12,6 @@ Pod::Spec.new do |s|
 
   s.source_files = 'src/*.{h,m}'
   s.resource     = 'src/FBDialog.bundle'
+  s.requires_arc = false
 
 end
